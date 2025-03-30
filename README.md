@@ -1,1 +1,1 @@
-# gigs-comingsoon
+# gigzs-comingsoon

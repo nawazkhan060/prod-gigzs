@@ -155,7 +155,7 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Mountain className="w-6 h-6 text-black" />
-              <span className="text-xl font-medium tracking-wider text-black">GIGZ</span>
+              <span className="text-xl font-medium tracking-wider text-black">GIGZs</span>
             </div>
             <div className="flex gap-6 sm:gap-10 text-sm">
               <button onClick={() => scrollToSection(aboutSectionRef)} className="text-black hover:text-primary transition-colors">About</button>
