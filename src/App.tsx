@@ -60,7 +60,7 @@ function App() {
               transition={{ delay: 0.2 }}
             >
               <span className="text-xs sm:text-sm font-medium">
-                Launching April 2025
+                Coming Soon
               </span>
             </motion.div>
 
