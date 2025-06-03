@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Shield, Users, Globe, User, Target, Briefcase, CreditCard } from 'lucide-react';
+import { Brain, Clipboard, Shield, Users, Globe, User, Target, Briefcase, CreditCard } from 'lucide-react';
 
 interface AnimatedCardProps {
   icon: string;
@@ -15,6 +15,8 @@ const getIcon = (icon: string) => {
   switch (icon) {
     case '🤖':
       return <Brain size={32} />;
+    case '📋':
+      return <Clipboard size={32} />;
     case '🔒':
       return <Shield size={32} />;
     case '👥':

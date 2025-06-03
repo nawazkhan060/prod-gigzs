@@ -1,66 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AnimatedCard from './components/AnimatedCard';
 import AutoSlider from './components/AutoSlider';
+import Contact from './components/Contact';
 import './App.css';
 
-function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <div style={{
-        position: 'fixed',
-        inset: 0,
-        background: 'linear-gradient(135deg, #00704a 0%, #004d33 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 50,
-      }}>
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          <motion.h1
-            style={{
-              fontFamily: 'Poppins',
-              fontSize: '5rem',
-              color: 'white',
-              marginBottom: '1rem',
-            }}
-          >
-            GIGZS
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            style={{
-              color: 'white',
-              fontSize: '1.2rem',
-              fontFamily: 'Poppins',
-            }}
-          >
-            AI-Powered Freelance Platform
-          </motion.p>
-        </motion.div>
-      </div>
-    );
-  }
-
+const Home = () => {
   const sectionStyle = {
     position: 'relative' as const,
     padding: '5rem 1rem',
@@ -251,7 +198,7 @@ function App() {
               {
                 title: 'Smart Project Management',
                 content: 'Automated workflows and intelligent task tracking to ensure smooth project delivery and client satisfaction.',
-                icon: '📊'
+                icon: '📋'
               },
               {
                 title: 'Secure Payments',
@@ -645,6 +592,75 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+};
+
+function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'linear-gradient(135deg, #00704a 0%, #004d33 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 50,
+      }}>
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          <motion.h1
+            style={{
+              fontFamily: 'Poppins',
+              fontSize: '5rem',
+              color: 'white',
+              marginBottom: '1rem',
+            }}
+          >
+            GIGZS
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            style={{
+              color: 'white',
+              fontSize: '1.2rem',
+              fontFamily: 'Poppins',
+            }}
+          >
+            AI-Powered Freelance Platform
+          </motion.p>
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <Router>
+      <div style={{ minHeight: '100vh', overflow: 'hidden' }}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
