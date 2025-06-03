@@ -1,0 +1,13 @@
+.newsletter-input:focus {
+  outline: none;
+  border-color: #00704a;
+  box-shadow: 0 0 0 2px rgba(0, 112, 74, 0.1);
+}
+
+.footer-link:hover {
+  color: #00704a !important; /* Important to override inline styles if any conflict */
+}
+
+.contact-link:hover {
+  color: #00704a !important; /* Important to override inline styles if any conflict */
+}
