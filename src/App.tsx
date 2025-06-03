@@ -79,7 +79,7 @@ function App() {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '6rem 1rem 1rem',
-        background: 'linear-gradient(135deg, #00704a 0%, #004d33 100%)',
+        background: 'linear-gradient(135deg, #006b42 0%, #003d2a 100%)',
         position: 'relative',
         overflow: 'hidden',
         marginBottom: '-3rem',
@@ -104,10 +104,11 @@ function App() {
             transition={{ delay: 0.2 }}
             style={{
               display: 'inline-block',
-              padding: '0.5rem 1.5rem',
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              padding: '0.75rem 1.75rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.15)',
               borderRadius: '2rem',
-              marginBottom: '2rem',
+              marginBottom: '2.5rem',
+              backdropFilter: 'blur(10px)',
             }}
           >
             <span style={{ 
@@ -115,36 +116,39 @@ function App() {
               fontFamily: 'Poppins', 
               fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
               fontWeight: '500',
+              letterSpacing: '0.5px',
             }}>
               The Future of Freelancing
             </span>
           </motion.div>
           <h1 style={{
-            fontSize: 'clamp(2rem, 5vw, 4rem)',
-            fontWeight: '600',
+            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+            fontWeight: '700',
             color: 'white',
-            marginBottom: '1.5rem',
+            marginBottom: '2rem',
             fontFamily: 'Poppins',
             lineHeight: 1.2,
             padding: '0 1rem',
+            textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
           }}>
             AI-Powered Freelance Excellence
           </h1>
           <AutoSlider />
           <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.5rem)',
-            color: '#f7f7f7',
-            maxWidth: '36rem',
-            margin: '0 auto 2rem',
+            fontSize: 'clamp(1.1rem, 2.2vw, 1.6rem)',
+            color: 'rgba(255, 255, 255, 0.9)',
+            maxWidth: '42rem',
+            margin: '0 auto 3rem',
             fontFamily: 'Poppins',
             lineHeight: 1.6,
             padding: '0 1rem',
+            fontWeight: '300',
           }}>
             Where artificial intelligence meets human creativity. Connect with top talent and innovative projects.
           </p>
           <div style={{ 
             display: 'flex', 
-            gap: '1rem', 
+            gap: '1.5rem', 
             justifyContent: 'center',
             flexWrap: 'wrap',
             maxWidth: '100%',
@@ -153,38 +157,40 @@ function App() {
             marginBottom: '3rem',
           }}>
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.05, boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)' }}
               whileTap={{ scale: 0.98 }}
               style={{
-                padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
-                fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                padding: 'clamp(0.875rem, 2.2vw, 1.25rem) clamp(1.75rem, 3.5vw, 2.5rem)',
+                fontSize: 'clamp(1.1rem, 2.2vw, 1.3rem)',
                 backgroundColor: 'white',
                 color: '#00704a',
                 border: 'none',
                 borderRadius: '2rem',
                 cursor: 'pointer',
                 fontFamily: 'Poppins',
-                fontWeight: '500',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                minWidth: 'clamp(150px, 30vw, 200px)',
+                fontWeight: '600',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                minWidth: 'clamp(180px, 35vw, 220px)',
+                transition: 'all 0.3s ease',
               }}
             >
               Get Started
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
               whileTap={{ scale: 0.98 }}
               style={{
-                padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
-                fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                padding: 'clamp(0.875rem, 2.2vw, 1.25rem) clamp(1.75rem, 3.5vw, 2.5rem)',
+                fontSize: 'clamp(1.1rem, 2.2vw, 1.3rem)',
                 backgroundColor: 'transparent',
                 color: 'white',
-                border: '2px solid white',
+                border: '2px solid rgba(255, 255, 255, 0.8)',
                 borderRadius: '2rem',
                 cursor: 'pointer',
                 fontFamily: 'Poppins',
-                fontWeight: '500',
-                minWidth: 'clamp(150px, 30vw, 200px)',
+                fontWeight: '600',
+                minWidth: 'clamp(180px, 35vw, 220px)',
+                transition: 'all 0.3s ease',
               }}
             >
               Learn More

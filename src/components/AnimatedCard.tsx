@@ -11,24 +11,26 @@ interface AnimatedCardProps {
   section?: 'features' | 'how-it-works' | 'benefits';
 }
 
-const getIcon = (iconName: string) => {
-  switch (iconName) {
+const getIcon = (icon: string) => {
+  switch (icon) {
     case '🤖':
       return <Brain size={32} />;
     case '🔒':
       return <Shield size={32} />;
-    case '💼':
-      return <Briefcase size={32} />;
-    case '🌍':
+    case '👥':
+      return <Users size={32} />;
+    case '🌐':
       return <Globe size={32} />;
     case '👤':
       return <User size={32} />;
     case '🎯':
       return <Target size={32} />;
+    case '💼':
+      return <Briefcase size={32} />;
     case '💰':
       return <CreditCard size={32} />;
     default:
-      return <Users size={32} />;
+      return null;
   }
 };
 
@@ -36,75 +38,25 @@ const getAnimationStyle = (section?: string) => {
   switch (section) {
     case 'features':
       return {
-        borderAnimation: {
-          initial: { borderColor: 'transparent' },
-          whileHover: {
-            borderColor: '#00704a',
-            borderWidth: '2px',
-            transition: {
-              duration: 0.2,
-              ease: 'easeInOut',
-            }
-          }
-        },
         hoverEffect: {
-          y: -5,
-          boxShadow: '0 8px 12px rgba(0, 0, 0, 0.1)',
+          y: -10,
+          boxShadow: '0 20px 40px rgba(0, 112, 74, 0.15)',
+          backgroundColor: 'rgba(0, 112, 74, 0.02)',
         }
       };
     case 'how-it-works':
       return {
-        borderAnimation: {
-          initial: { borderColor: 'transparent' },
-          whileHover: {
-            borderColor: '#00704a',
-            borderWidth: '2px',
-            transition: {
-              duration: 0.2,
-              ease: 'easeInOut',
-            }
-          }
-        },
         hoverEffect: {
           scale: 1.02,
-          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
-        }
-      };
-    case 'benefits':
-      return {
-        borderAnimation: {
-          initial: { borderColor: 'transparent' },
-          whileHover: {
-            borderColor: '#00704a',
-            borderWidth: '2px',
-            transition: {
-              duration: 0.2,
-              ease: 'easeInOut',
-            }
-          }
-        },
-        hoverEffect: {
-          y: -3,
-          scale: 1.01,
-          boxShadow: '0 6px 12px rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 20px 40px rgba(0, 112, 74, 0.15)',
+          backgroundColor: 'rgba(0, 112, 74, 0.02)',
         }
       };
     default:
       return {
-        borderAnimation: {
-          initial: { borderColor: 'transparent' },
-          whileHover: {
-            borderColor: '#00704a',
-            borderWidth: '2px',
-            transition: {
-              duration: 0.2,
-              ease: 'easeInOut',
-            }
-          }
-        },
         hoverEffect: {
           y: -5,
-          boxShadow: '0 8px 12px rgba(0, 0, 0, 0.1)',
+          boxShadow: '0 10px 20px rgba(0, 112, 74, 0.1)',
         }
       };
   }
@@ -117,9 +69,9 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ icon, title, content, step,
     <motion.div
       style={{
         backgroundColor: 'white',
-        padding: '2rem',
-        borderRadius: '1rem',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+        padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+        borderRadius: '1.5rem',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
         cursor: 'pointer',
         position: 'relative',
         overflow: 'hidden',
@@ -128,7 +80,8 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ icon, title, content, step,
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center',
-        border: '2px solid transparent',
+        border: '1px solid rgba(0, 112, 74, 0.1)',
+        transition: 'all 0.3s ease',
       }}
       whileHover={{
         ...animationStyle.hoverEffect,
@@ -145,15 +98,20 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ icon, title, content, step,
       <motion.div
         style={{
           marginBottom: '1.5rem',
-          padding: '1rem',
+          padding: 'clamp(0.75rem, 2vw, 1.25rem)',
           backgroundColor: 'rgba(0, 112, 74, 0.05)',
-          borderRadius: '0.75rem',
-          width: '4rem',
-          height: '4rem',
+          borderRadius: '1rem',
+          width: 'clamp(3rem, 5vw, 4rem)',
+          height: 'clamp(3rem, 5vw, 4rem)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: '#00704a',
+          transition: 'all 0.3s ease',
+        }}
+        whileHover={{
+          scale: 1.1,
+          backgroundColor: 'rgba(0, 112, 74, 0.1)',
         }}
       >
         {getIcon(icon)}
@@ -162,7 +120,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ icon, title, content, step,
       {step && (
         <motion.div
           style={{
-            fontSize: '3rem',
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
             color: '#00704a',
             opacity: 0.05,
             position: 'absolute',
@@ -170,6 +128,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ icon, title, content, step,
             right: '1rem',
             fontFamily: 'Poppins',
             lineHeight: 1,
+            fontWeight: '700',
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.05 }}
@@ -181,11 +140,11 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ icon, title, content, step,
       
       <motion.h3
         style={{
-          fontSize: '1.5rem',
+          fontSize: 'clamp(1.25rem, 2.5vw, 1.5rem)',
           color: '#00704a',
           marginBottom: '1rem',
           fontFamily: 'Poppins',
-          fontWeight: '500',
+          fontWeight: '600',
         }}
       >
         {title}
@@ -199,6 +158,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ icon, title, content, step,
           flex: 1,
           display: 'flex',
           alignItems: 'center',
+          fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)',
         }}
       >
         {content}
