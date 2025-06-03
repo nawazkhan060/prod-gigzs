@@ -78,7 +78,7 @@ function App() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '6rem 2rem 1rem',
+        padding: '6rem 1rem 1rem',
         background: 'linear-gradient(135deg, #00704a 0%, #004d33 100%)',
         position: 'relative',
         overflow: 'hidden',
@@ -113,30 +113,32 @@ function App() {
             <span style={{ 
               color: 'white', 
               fontFamily: 'Poppins', 
-              fontSize: '1.1rem',
+              fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
               fontWeight: '500',
             }}>
               The Future of Freelancing
             </span>
           </motion.div>
           <h1 style={{
-            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            fontSize: 'clamp(2rem, 5vw, 4rem)',
             fontWeight: '600',
             color: 'white',
             marginBottom: '1.5rem',
             fontFamily: 'Poppins',
             lineHeight: 1.2,
+            padding: '0 1rem',
           }}>
             AI-Powered Freelance Excellence
           </h1>
           <AutoSlider />
           <p style={{
-            fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
+            fontSize: 'clamp(1rem, 2vw, 1.5rem)',
             color: '#f7f7f7',
             maxWidth: '36rem',
             margin: '0 auto 2rem',
             fontFamily: 'Poppins',
             lineHeight: 1.6,
+            padding: '0 1rem',
           }}>
             Where artificial intelligence meets human creativity. Connect with top talent and innovative projects.
           </p>
@@ -154,8 +156,8 @@ function App() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               style={{
-                padding: '1rem 2rem',
-                fontSize: '1.2rem',
+                padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
+                fontSize: 'clamp(1rem, 2vw, 1.2rem)',
                 backgroundColor: 'white',
                 color: '#00704a',
                 border: 'none',
@@ -164,7 +166,7 @@ function App() {
                 fontFamily: 'Poppins',
                 fontWeight: '500',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                minWidth: '200px',
+                minWidth: 'clamp(150px, 30vw, 200px)',
               }}
             >
               Get Started
@@ -173,8 +175,8 @@ function App() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               style={{
-                padding: '1rem 2rem',
-                fontSize: '1.2rem',
+                padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
+                fontSize: 'clamp(1rem, 2vw, 1.2rem)',
                 backgroundColor: 'transparent',
                 color: 'white',
                 border: '2px solid white',
@@ -182,7 +184,7 @@ function App() {
                 cursor: 'pointer',
                 fontFamily: 'Poppins',
                 fontWeight: '500',
-                minWidth: '200px',
+                minWidth: 'clamp(150px, 30vw, 200px)',
               }}
             >
               Learn More
@@ -193,7 +195,7 @@ function App() {
 
       <section id="features" style={{
         ...sectionStyle,
-        padding: '4rem 1rem',
+        padding: 'clamp(2rem, 5vw, 4rem) 1rem',
         marginTop: '-3rem',
         backgroundColor: 'white',
         position: 'relative',
@@ -213,7 +215,7 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <h2 style={{
-              fontSize: '2.5rem',
+              fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
               fontWeight: '600',
               color: '#00704a',
               marginBottom: '1rem',
@@ -223,17 +225,17 @@ function App() {
               Why Choose GIGZS?
             </h2>
             <p style={{
-              fontSize: '1.2rem',
+              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
               color: '#666',
               textAlign: 'center',
               maxWidth: '48rem',
-              margin: '0 auto 3rem',
+              margin: '0 auto clamp(2rem, 4vw, 3rem)',
               fontFamily: 'Poppins',
             }}>
               Experience the perfect blend of AI technology and human expertise
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {[
               {
                 title: 'AI-Powered Matching',
@@ -267,7 +269,7 @@ function App() {
       <section id="how-it-works" style={{
         ...sectionStyle,
         backgroundColor: '#f8f9fa',
-        padding: '4rem 1rem',
+        padding: 'clamp(2rem, 5vw, 4rem) 1rem',
         marginTop: '-3rem',
       }}>
         <div style={{
@@ -284,7 +286,7 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <h2 style={{
-              fontSize: '2.5rem',
+              fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
               fontWeight: '600',
               color: '#00704a',
               marginBottom: '1rem',
@@ -294,18 +296,18 @@ function App() {
               How It Works
             </h2>
             <p style={{
-              fontSize: '1.2rem',
+              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
               color: '#666',
               textAlign: 'center',
               maxWidth: '48rem',
-              margin: '0 auto 4rem',
+              margin: '0 auto clamp(2rem, 4vw, 4rem)',
               fontFamily: 'Poppins',
             }}>
               Get started in minutes with our simple and efficient process
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {[
               {
                 step: '01',
@@ -346,10 +348,10 @@ function App() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '2rem',
-            marginTop: '4rem',
-            padding: '2rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1rem',
+            marginTop: 'clamp(2rem, 4vw, 4rem)',
+            padding: 'clamp(1rem, 3vw, 2rem)',
             backgroundColor: 'white',
             borderRadius: '1rem',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
@@ -458,7 +460,7 @@ function App() {
 
       <footer style={{
         backgroundColor: 'white',
-        padding: '4rem 1rem 1rem',
+        padding: 'clamp(2rem, 5vw, 4rem) 1rem 1rem',
         color: '#272727',
         fontFamily: 'Poppins',
         position: 'relative',
@@ -471,7 +473,7 @@ function App() {
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '2rem',
+          gap: 'clamp(1rem, 3vw, 2rem)',
           position: 'relative',
           zIndex: 1,
           padding: '0 1rem',
@@ -620,8 +622,8 @@ function App() {
         </div>
         <div style={{
           maxWidth: '80rem',
-          margin: '2rem auto 0',
-          paddingTop: '1.5rem',
+          margin: 'clamp(1rem, 3vw, 2rem) auto 0',
+          paddingTop: 'clamp(1rem, 2vw, 1.5rem)',
           borderTop: '1px solid rgba(0, 112, 74, 0.1)',
           textAlign: 'center',
           color: '#666',
@@ -629,7 +631,7 @@ function App() {
         }}>
           <p style={{ 
             margin: 0,
-            fontSize: '0.9rem',
+            fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
             opacity: 0.8,
           }}>
             © {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#00704a', textDecoration: 'none' }}>GIGZS</a>. All rights reserved. Designed by <a href="https://uimitra.com" style={{ color: '#00704a', textDecoration: 'none' }}>uimitra</a>
