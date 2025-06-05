@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AnimatedCard from './components/AnimatedCard';
 import AutoSlider from './components/AutoSlider';
@@ -103,45 +103,51 @@ const Home = () => {
             position: 'relative',
             marginBottom: '3rem',
           }}>
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)' }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                padding: 'clamp(0.875rem, 2.2vw, 1.25rem) clamp(1.75rem, 3.5vw, 2.5rem)',
-                fontSize: 'clamp(1.1rem, 2.2vw, 1.3rem)',
-                backgroundColor: 'white',
-                color: '#00704a',
-                border: 'none',
-                borderRadius: '2rem',
-                cursor: 'pointer',
-                fontFamily: 'Poppins',
-                fontWeight: '600',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                minWidth: 'clamp(180px, 35vw, 220px)',
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Get Started
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                padding: 'clamp(0.875rem, 2.2vw, 1.25rem) clamp(1.75rem, 3.5vw, 2.5rem)',
-                fontSize: 'clamp(1.1rem, 2.2vw, 1.3rem)',
-                backgroundColor: 'transparent',
-                color: 'white',
-                border: '2px solid rgba(255, 255, 255, 0.8)',
-                borderRadius: '2rem',
-                cursor: 'pointer',
-                fontFamily: 'Poppins',
-                fontWeight: '600',
-                minWidth: 'clamp(180px, 35vw, 220px)',
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Learn More
-            </motion.button>
+            <a href="https://app.gigzs.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)' }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  padding: 'clamp(0.875rem, 2.2vw, 1.25rem) clamp(1.75rem, 3.5vw, 2.5rem)',
+                  fontSize: 'clamp(1.1rem, 2.2vw, 1.3rem)',
+                  backgroundColor: 'white',
+                  color: '#00704a',
+                  border: 'none',
+                  borderRadius: '2rem',
+                  cursor: 'pointer',
+                  fontFamily: 'Poppins',
+                  fontWeight: '600',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                  minWidth: 'clamp(180px, 35vw, 220px)',
+                  transition: 'all 0.3s ease',
+                  width: '100%' // Ensure button takes full width of Link
+                }}
+              >
+                Get Started
+              </motion.button>
+            </a>
+            <Link to="/contact" style={{ textDecoration: 'none' }}>
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  padding: 'clamp(0.875rem, 2.2vw, 1.25rem) clamp(1.75rem, 3.5vw, 2.5rem)',
+                  fontSize: 'clamp(1.1rem, 2.2vw, 1.3rem)',
+                  backgroundColor: 'transparent',
+                  color: 'white',
+                  border: '2px solid rgba(255, 255, 255, 0.8)',
+                  borderRadius: '2rem',
+                  cursor: 'pointer',
+                  fontFamily: 'Poppins',
+                  fontWeight: '600',
+                  minWidth: 'clamp(180px, 35vw, 220px)',
+                  transition: 'all 0.3s ease',
+                  width: '100%' // Ensure button takes full width of Link
+                }}
+              >
+                Learn More
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </section>
@@ -388,24 +394,26 @@ const Home = () => {
               }}>
                 Join thousands of freelancers and clients who are already using GIGZS to create amazing projects together.
               </p>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                style={{
-                  padding: '1rem 2rem',
-                  backgroundColor: '#00704a',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '2rem',
-                  cursor: 'pointer',
-                  fontFamily: 'Poppins',
-                  fontWeight: '500',
-                  width: '100%',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                }}
-              >
-                Join Now
-              </motion.button>
+              <a href="https://app.gigzs.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  style={{
+                    padding: '1rem 2rem',
+                    backgroundColor: '#00704a',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '2rem',
+                    cursor: 'pointer',
+                    fontFamily: 'Poppins',
+                    fontWeight: '500',
+                    width: '100%',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  }}
+                >
+                  Join Now
+                </motion.button>
+              </a>
             </motion.div>
           </div>
         </div>
