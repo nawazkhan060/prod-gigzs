@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AnimatedCard from './components/AnimatedCard';
 import AutoSlider from './components/AutoSlider';
@@ -123,25 +123,28 @@ const Home = () => {
             >
               Get Started
             </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                padding: 'clamp(0.875rem, 2.2vw, 1.25rem) clamp(1.75rem, 3.5vw, 2.5rem)',
-                fontSize: 'clamp(1.1rem, 2.2vw, 1.3rem)',
-                backgroundColor: 'transparent',
-                color: 'white',
-                border: '2px solid rgba(255, 255, 255, 0.8)',
-                borderRadius: '2rem',
-                cursor: 'pointer',
-                fontFamily: 'Poppins',
-                fontWeight: '600',
-                minWidth: 'clamp(180px, 35vw, 220px)',
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Learn More
-            </motion.button>
+            <Link to="/contact" style={{ textDecoration: 'none' }}>
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  padding: 'clamp(0.875rem, 2.2vw, 1.25rem) clamp(1.75rem, 3.5vw, 2.5rem)',
+                  fontSize: 'clamp(1.1rem, 2.2vw, 1.3rem)',
+                  backgroundColor: 'transparent',
+                  color: 'white',
+                  border: '2px solid rgba(255, 255, 255, 0.8)',
+                  borderRadius: '2rem',
+                  cursor: 'pointer',
+                  fontFamily: 'Poppins',
+                  fontWeight: '600',
+                  minWidth: 'clamp(180px, 35vw, 220px)',
+                  transition: 'all 0.3s ease',
+                  width: '100%' // Ensure button takes full width of Link
+                }}
+              >
+                Learn More
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </section>
