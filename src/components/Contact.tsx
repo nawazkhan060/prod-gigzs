@@ -76,7 +76,7 @@ const Contact = () => {
                       color: '#666',
                       fontFamily: 'Poppins',
                     }}>
-                      contact@gigzs.com
+                      info@gigzs.com
                     </p>
                   </div>
                 </div>
@@ -99,7 +99,7 @@ const Contact = () => {
                       color: '#666',
                       fontFamily: 'Poppins',
                     }}>
-                      +1 (555) 123-4567
+                      +91 70387 25831
                     </p>
                   </div>
                 </div>
