@@ -4,6 +4,19 @@
   box-shadow: 0 0 0 2px rgba(0, 112, 74, 0.1);
 }
 
+.newsletter-input.md\:gap-8 {
+  gap: 2rem;
+}
+
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .footer-link:hover {
   color: #00704a !important; /* Important to override inline styles if any conflict */
 }

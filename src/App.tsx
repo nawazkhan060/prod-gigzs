@@ -5,9 +5,27 @@ import Navbar from './components/Navbar';
 import AnimatedCard from './components/AnimatedCard';
 import AutoSlider from './components/AutoSlider';
 import Contact from './components/Contact';
+import Modal from './components/Modal';
+import TermsAndConditions from './policies/TermsAndConditions';
+import PrivacyPolicy from './policies/PrivacyPolicy';
+import CancellationPolicy from './policies/CancellationPolicy';
+import ShippingPolicy from './policies/ShippingPolicy';
 import './App.css';
 
 const Home = () => {
+  const [modalContent, setModalContent] = useState<React.ReactNode | null>(null);
+  const [modalTitle, setModalTitle] = useState('');
+
+  const openModal = (title: string, content: React.ReactNode) => {
+    setModalTitle(title);
+    setModalContent(content);
+  };
+
+  const closeModal = () => {
+    setModalContent(null);
+    setModalTitle('');
+  };
+
   const sectionStyle = {
     position: 'relative' as const,
     padding: '5rem 1rem',
@@ -35,9 +53,9 @@ const Home = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{ 
-            textAlign: 'center', 
-            position: 'relative', 
+          style={{
+            textAlign: 'center',
+            position: 'relative',
             zIndex: 2,
             maxWidth: '1200px',
             width: '100%',
@@ -58,9 +76,9 @@ const Home = () => {
               backdropFilter: 'blur(10px)',
             }}
           >
-            <span style={{ 
-              color: 'white', 
-              fontFamily: 'Poppins', 
+            <span style={{
+              color: 'white',
+              fontFamily: 'Poppins',
               fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
               fontWeight: '500',
               letterSpacing: '0.5px',
@@ -93,9 +111,9 @@ const Home = () => {
           }}>
             Where artificial intelligence meets human creativity. Connect with top talent and innovative projects.
           </p>
-          <div style={{ 
-            display: 'flex', 
-            gap: '1.5rem', 
+          <div style={{
+            display: 'flex',
+            gap: '1.5rem',
             justifyContent: 'center',
             flexWrap: 'wrap',
             maxWidth: '100%',
@@ -481,7 +499,7 @@ const Home = () => {
               </motion.button>
             </div>
           </div>
-          
+
           <div>
             <h3 style={{
               fontSize: '1.25rem',
@@ -490,9 +508,9 @@ const Home = () => {
               color: '#00704a',
               fontFamily: 'Poppins',
             }}>Quick Links</h3>
-            <ul style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
+            <ul style={{
+              display: 'flex',
+              flexDirection: 'column',
               gap: '1rem',
               listStyle: 'none',
               padding: 0,
@@ -509,10 +527,10 @@ const Home = () => {
                   whileHover={{ x: 5 }}
                   style={{ margin: 0 }}
                 >
-                  <a 
+                  <a
                     href={link.href}
                     className="footer-link"
-                    style={{ 
+                    style={{
                       color: '#272727',
                       textDecoration: 'none',
                       transition: 'all 0.3s ease',
@@ -526,7 +544,7 @@ const Home = () => {
               ))}
             </ul>
           </div>
-          
+
           <div>
             <h3 style={{
               fontSize: '1.25rem',
@@ -535,9 +553,9 @@ const Home = () => {
               color: '#00704a',
               fontFamily: 'Poppins',
             }}>Location</h3>
-            <address style={{ 
-              fontStyle: 'normal', 
-              color: '#272727', 
+            <address style={{
+              fontStyle: 'normal',
+              color: '#272727',
               lineHeight: 1.6,
               display: 'flex',
               flexDirection: 'column',
@@ -550,7 +568,7 @@ const Home = () => {
               <span>PIN: 441210</span>
             </address>
           </div>
-          
+
           <div>
             <h3 style={{
               fontSize: '1.25rem',
@@ -564,12 +582,12 @@ const Home = () => {
               flexDirection: 'column',
               gap: '1rem',
             }}>
-              <motion.a 
+              <motion.a
                 href="mailto:info@GIGZS.com"
                 whileHover={{ x: 5 }}
                 className="contact-link"
-                style={{ 
-                  color: '#272727', 
+                style={{
+                  color: '#272727',
                   textDecoration: 'none',
                   transition: 'all 0.3s ease',
                   display: 'inline-block',
@@ -590,15 +608,24 @@ const Home = () => {
           color: '#666',
           fontFamily: 'Poppins',
         }}>
-          <p style={{ 
+          <p style={{
             margin: 0,
             fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
             opacity: 0.8,
           }}>
-            © {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#00704a', textDecoration: 'none' }}>GIGZS</a>. All rights reserved. Designed by <a href="https://uimitra.com" style={{ color: '#00704a', textDecoration: 'none' }}>uimitra</a>
+            {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#00704a', textDecoration: 'none' }}>GIGZS</a>. All rights reserved.
           </p>
+          <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <button onClick={() => openModal('Terms and Conditions', <TermsAndConditions />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Terms & Conditions</button>
+            <button onClick={() => openModal('Privacy Policy', <PrivacyPolicy />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Privacy Policy</button>
+            <button onClick={() => openModal('Cancellation Policy', <CancellationPolicy />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Cancellation Policy</button>
+            <button onClick={() => openModal('Shipping Policy', <ShippingPolicy />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Shipping Policy</button>
+          </div>
         </div>
       </footer>
+      <Modal isOpen={!!modalContent} onClose={closeModal} title={modalTitle}>
+        {modalContent}
+      </Modal>
     </div>
   );
 };
