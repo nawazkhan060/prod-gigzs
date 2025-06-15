@@ -613,7 +613,7 @@ const Home = () => {
             fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
             opacity: 0.8,
           }}>
-            {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#00704a', textDecoration: 'none' }}>GIGZS</a>. All rights reserved.
+            {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#00704a', textDecoration: 'none' }}>GIGZS pvt ltd </a>. All rights reserved.
           </p>
           <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
             <button onClick={() => openModal('Terms and Conditions', <TermsAndConditions />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Terms & Conditions</button>
