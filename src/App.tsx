@@ -615,6 +615,14 @@ const Home = () => {
           }}>
             {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#00704a', textDecoration: 'none' }}>GIGZS pvt ltd </a>. All rights reserved.
           </p>
+          <p style={{
+            margin: 0,
+            fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
+            opacity: 0.8,
+            marginTop: '0.5rem',
+          }}>
+            Designed by <a href="https://uimitra.com" target="_blank" rel="noopener noreferrer" style={{ color: '#00704a', textDecoration: 'underline' }}>Uimitra</a>.
+          </p>
           <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
             <button onClick={() => openModal('Terms and Conditions', <TermsAndConditions />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Terms & Conditions</button>
             <button onClick={() => openModal('Privacy Policy', <PrivacyPolicy />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Privacy Policy</button>
