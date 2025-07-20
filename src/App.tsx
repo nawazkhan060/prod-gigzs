@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import Counter from './components/Counter';
 import Contact from './components/Contact';
 import Modal from './components/Modal';
+import Threads from './components/Threads';
+import ImageTrail from './components/ImageTrail';
 import TermsAndConditions from './policies/TermsAndConditions';
 import PrivacyPolicy from './policies/PrivacyPolicy';
 import CancellationPolicy from './policies/CancellationPolicy';
@@ -240,201 +242,139 @@ const Home = () => {
     <div style={{ minHeight: '100vh', backgroundColor: '#f7f7f7' }}>
       <Navbar />
 
-     
+      {/* Hero Section with Threads Animation */}
+      <section style={{
+        minHeight: '100vh',
+        backgroundColor: '#00704a',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+      }}>
+        {/* Threads Animation Background */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          opacity: 0.8,
+          zIndex: 1,
+        }}>
+          <Threads
+            color={[0.9, 0.95, 1]}  // Light blue-gray color for better visibility
+            amplitude={1}
+            distance={0}
+            enableMouseInteraction={true}
+          />
+        </div>
+        
+        {/* Hero Content */}
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          textAlign: 'center',
+        }}>
+          <motion.h1
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: 'clamp(4rem, 12vw, 8rem)',
+              fontWeight: 'bold',
+              color: 'white',
+              margin: 0,
+              textShadow: '0 4px 20px rgba(0,0,0,0.3)',
+              letterSpacing: '0.1em',
+            }}
+          >
+            gigzs
+          </motion.h1>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+            style={{
+              marginTop: '2rem',
+              fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+              color: 'rgba(255,255,255,0.9)',
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: '300',
+            }}
+          >
+            AI-Powered Freelance Platform
+           
+          </motion.div>
+          
+          {/* Animated scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            style={{
+              position: 'absolute',
+              bottom: '2rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            
+            
+          </motion.div>
+        </div>
+      </section>
 
-      {/* Interactive Find What's Next Section with Floating Job Categories */}
+      {/* Find What's Next Section with ImageTrail Job Categories */}
       <section id="find-whats-next" style={{
-        padding: '8rem 2rem',
+        padding: '4rem 2rem',
         backgroundColor: '#f7f7f7',
         position: 'relative',
         overflow: 'hidden',
-        minHeight: '100vh',
+        minHeight: '60vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-        {/* Global Mouse Tracker with Cursor Radius Effect */}
-        <div 
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 1,
-          }}
-          onMouseMove={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-            
-            // 5cm radius (approximately 189px at 96 DPI)
-            const cursorRadius = 189;
-            
-            // Get text area boundaries for strict collision prevention (1cm = ~38px)
-            const textElement = document.querySelector('.main-heading');
-            const textRect = textElement?.getBoundingClientRect();
-            
-            // Update ALL floating categories with proper circular motion and collision prevention
-            const categories = document.querySelectorAll('.floating-category');
-            const allJobPositions: { x: number; y: number; element: HTMLElement }[] = [];
-            
-            categories.forEach((category, index) => {
-              const element = category as HTMLElement;
-              const categoryRect = element.getBoundingClientRect();
-              const sectionRect = rect;
-              
-              // Get original position from data attributes
-              let originalX = parseFloat(element.dataset.originalX || '0');
-              let originalY = parseFloat(element.dataset.originalY || '0');
-              
-              // If not set, calculate and store original position
-              if (!element.dataset.originalX) {
-                originalX = sectionRect.width * parseFloat(element.style.left) / 100;
-                originalY = sectionRect.height * parseFloat(element.style.top) / 100;
-                element.dataset.originalX = String(originalX);
-                element.dataset.originalY = String(originalY);
-              }
-              
-              // STRICT TEXT COLLISION PREVENTION - 1cm (38px) minimum distance
-              if (textRect) {
-                const oneCm = 38; // 1cm in pixels
-                const textLeft = textRect.left - sectionRect.left - oneCm;
-                const textRight = textRect.right - sectionRect.left + oneCm;
-                const textTop = textRect.top - sectionRect.top - oneCm;
-                const textBottom = textRect.bottom - sectionRect.top + oneCm;
-                
-                // If original position is too close to text, move it away permanently
-                if (originalX > textLeft && originalX < textRight && originalY > textTop && originalY < textBottom) {
-                  const centerTextX = (textLeft + textRight) / 2;
-                  const centerTextY = (textTop + textBottom) / 2;
-                  
-                  const textDeltaX = originalX - centerTextX;
-                  const textDeltaY = originalY - centerTextY;
-                  const textDistance = Math.sqrt(textDeltaX * textDeltaX + textDeltaY * textDeltaY);
-                  
-                  if (textDistance > 0) {
-                    const pushDistance = oneCm + 20; // 1cm + extra buffer
-                    originalX = centerTextX + (textDeltaX / textDistance) * pushDistance;
-                    originalY = centerTextY + (textDeltaY / textDistance) * pushDistance;
-                    element.dataset.originalX = String(originalX);
-                    element.dataset.originalY = String(originalY);
-                  }
-                }
-              }
-              
-              // Store position for overlap checking
-              allJobPositions.push({ x: originalX, y: originalY, element });
-            });
-            
-            // PREVENT JOB OVERLAPPING - Check each job against others
-            allJobPositions.forEach((currentJob, currentIndex) => {
-              allJobPositions.forEach((otherJob, otherIndex) => {
-                if (currentIndex !== otherIndex) {
-                  const distance = Math.sqrt(
-                    Math.pow(currentJob.x - otherJob.x, 2) + 
-                    Math.pow(currentJob.y - otherJob.y, 2)
-                  );
-                  
-                  const minDistance = 60; // Minimum distance between jobs
-                  
-                  if (distance < minDistance) {
-                    const deltaX = currentJob.x - otherJob.x;
-                    const deltaY = currentJob.y - otherJob.y;
-                    const pushDistance = (minDistance - distance) / 2;
-                    
-                    if (distance > 0) {
-                      const directionX = deltaX / distance;
-                      const directionY = deltaY / distance;
-                      
-                      currentJob.x += directionX * pushDistance;
-                      currentJob.y += directionY * pushDistance;
-                      currentJob.element.dataset.originalX = String(currentJob.x);
-                      currentJob.element.dataset.originalY = String(currentJob.y);
-                    }
-                  }
-                }
-              });
-            });
-            
-            // Now apply cursor movement to all jobs
-            categories.forEach((category, index) => {
-              const element = category as HTMLElement;
-              const originalX = parseFloat(element.dataset.originalX || '0');
-              const originalY = parseFloat(element.dataset.originalY || '0');
-              
-              // Calculate distance and direction from cursor to category's original position
-              const deltaX = mouseX - originalX;
-              const deltaY = mouseY - originalY;
-              const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-              
-              // Move every job opposite to the cursor direction.
-              // The further the cursor, the smaller the displacement (capped for stability).
-              const maxDisplacement = 40; // px
-              const influenceRadius = Math.max(rect.width, rect.height); // full section diagonal approx
-              const influence = Math.min(distance / influenceRadius, 1); // 0 (close) -> 1 (far)
-              const strength = (1 - influence); // jobs nearer to cursor move more
-              
-              const directionX = distance === 0 ? 0 : -deltaX / distance; // opposite
-              const directionY = distance === 0 ? 0 : -deltaY / distance;
-              
-              let offsetX = directionX * strength * maxDisplacement;
-              let offsetY = directionY * strength * maxDisplacement;
-              
-              // FINAL TEXT COLLISION CHECK - ensure final position doesn't overlap
-              if (textRect) {
-                const finalX = originalX + offsetX;
-                const finalY = originalY + offsetY;
-                const textLeft = textRect.left - sectionRect.left - 120;
-                const textRight = textRect.right - sectionRect.left + 120;
-                const textTop = textRect.top - sectionRect.top - 80;
-                const textBottom = textRect.bottom - sectionRect.top + 80;
-                
-                if (finalX > textLeft && finalX < textRight && finalY > textTop && finalY < textBottom) {
-                  const centerTextX = (textLeft + textRight) / 2;
-                  const centerTextY = (textTop + textBottom) / 2;
-                  
-                  const textDeltaX = finalX - centerTextX;
-                  const textDeltaY = finalY - centerTextY;
-                  const textDistance = Math.sqrt(textDeltaX * textDeltaX + textDeltaY * textDeltaY);
-                  
-                  if (textDistance > 0) {
-                    const pushDistance = 150;
-                    offsetX = (textDeltaX / textDistance) * pushDistance - (originalX - centerTextX);
-                    offsetY = (textDeltaY / textDistance) * pushDistance - (originalY - centerTextY);
-                  }
-                }
-              }
-              
-              // Apply smooth transition
-              element.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-              element.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
-            });
-          }}
-        />
-        
-        <div className="main-heading" style={{
-          textAlign: 'center',
+        {/* Container for split layout */}
+        <div style={{
+          maxWidth: '1200px',
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '4rem',
+          alignItems: 'center',
           position: 'relative',
           zIndex: 10,
         }}>
+          {/* Left Side - Current Content */}
+          <div className="main-heading" style={{
+            textAlign: 'left',
+            position: 'relative',
+          }}>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             style={{
-              fontSize: 'clamp(1rem, 6vw, 6rem)',
+              fontSize: 'clamp(1.2rem, 3vw, 2.8rem)', // Reduced font size
               fontWeight: '500',
               color: '#272727',
-              marginBottom: '2rem',
+              marginBottom: '1.5rem',
               fontFamily: 'Poppins',
               position: 'relative',
               display: 'inline-block',
               lineHeight: 1.1,
               textAlign: 'center',
-              marginLeft: '2rem',
-              marginRight: '2rem',
-              padding: '0 2rem',
+              marginLeft: '1rem',
+              marginRight: '1rem',
+              padding: '0 1rem',
             }}
           >
             Where freelancers and clients<br />
@@ -453,7 +393,7 @@ const Home = () => {
                 color: 'white',
                 padding: '0.75rem 1.5rem',
                 borderRadius: '2rem',
-                fontSize: '1rem',
+                fontSize: '0.9rem',
                 fontWeight: '600',
                 whiteSpace: 'nowrap',
                 boxShadow: '0 8px 25px rgba(0, 112, 74, 0.4)',
@@ -472,10 +412,10 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             style={{
-              fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+              fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
               color: '#666',
-              maxWidth: '600px',
-              margin: '0 auto 3rem',
+              maxWidth: '500px',
+              margin: '0 auto 2rem',
               fontFamily: 'Poppins',
               lineHeight: 1.6,
             }}
@@ -499,16 +439,16 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 style={{
-                  padding: '1rem 2rem',
-                  fontSize: '1.1rem',
+                  padding: '0.8rem 1.5rem',
+                  fontSize: '1rem',
                   backgroundColor: '#00704a',
                   color: 'white',
                   border: 'none',
-                  borderRadius: '1rem',
+                  borderRadius: '0.8rem',
                   cursor: 'pointer',
                   fontFamily: 'Poppins',
                   fontWeight: '600',
-                  minWidth: '200px',
+                  minWidth: '180px',
                   transition: 'all 0.3s ease',
                 }}
               >
@@ -520,16 +460,16 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 style={{
-                  padding: '1rem 2rem',
-                  fontSize: '1.1rem',
+                  padding: '0.8rem 1.5rem',
+                  fontSize: '1rem',
                   backgroundColor: 'transparent',
                   color: '#00704a',
                   border: '2px solid #00704a',
-                  borderRadius: '1rem',
+                  borderRadius: '0.8rem',
                   cursor: 'pointer',
                   fontFamily: 'Poppins',
                   fontWeight: '600',
-                  minWidth: '200px',
+                  minWidth: '180px',
                   transition: 'all 0.3s ease',
                 }}
               >
@@ -537,105 +477,133 @@ const Home = () => {
               </motion.button>
             </a>
           </motion.div>
-        </div>
-
-        {/* Floating Job Categories - Only Actual Job Titles */}
-        {[
-          { text: 'Full Stack Developer', x: 15, y: 8, category: 'tech', opacity: 0.9 },
-          { text: 'Frontend Developer', x: 85, y: 12, category: 'tech', opacity: 0.8 },
-          { text: 'Backend Developer', x: 10, y: 15, category: 'tech', opacity: 0.9 },
-          { text: 'Mobile App Developer', x: 88, y: 22, category: 'tech', opacity: 0.8 },
-          { text: 'UI/UX Designer', x: 75, y: 8, category: 'design', opacity: 0.7 },
-          { text: 'Data Scientist', x: 25, y: 12, category: 'tech', opacity: 0.9 },
-          { text: 'DevOps Engineer', x: 65, y: 15, category: 'tech', opacity: 0.8 },
-          { text: 'Machine Learning Engineer', x: 45, y: 8, category: 'tech', opacity: 0.9 },
-          { text: 'Product Manager', x: 35, y: 16, category: 'business', opacity: 0.7 },
-          { text: 'Graphic Designer', x: 55, y: 12, category: 'design', opacity: 0.6 },
-          { text: 'Software Architect', x: 15, y: 85, category: 'tech', opacity: 0.8 },
-          { text: 'QA Engineer', x: 25, y: 80, category: 'tech', opacity: 0.7 },
-          { text: 'Blockchain Developer', x: 35, y: 88, category: 'tech', opacity: 0.8 },
-          { text: 'Cybersecurity Specialist', x: 45, y: 82, category: 'tech', opacity: 0.9 },
-          { text: 'Cloud Engineer', x: 55, y: 90, category: 'tech', opacity: 0.8 },
-          { text: 'Game Developer', x: 65, y: 85, category: 'tech', opacity: 0.7 },
-          { text: 'Technical Writer', x: 75, y: 88, category: 'content', opacity: 0.6 },
-          { text: 'Digital Marketer', x: 85, y: 82, category: 'marketing', opacity: 0.7 },
-          { text: 'SEO Specialist', x: 88, y: 90, category: 'marketing', opacity: 0.6 },
-          { text: 'Content Creator', x: 12, y: 88, category: 'content', opacity: 0.5 },
-        ].map((item, index) => {
-          const getCategoryColor = (category: string) => {
-            const colors = {
-              tech: '#272727',
-              design: '#00704a',
-              business: '#059669',
-              content: '#dc2626',
-              marketing: '#ea580c'
-            };
-            return colors[category as keyof typeof colors] || '#272727';
-          };
+          </div>
           
-          return (
+          {/* Right Side - Hover Instruction Box */}
+          <div style={{
+            position: 'relative',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            {/* ImageTrail for Job Categories - Right side only */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              zIndex: 11, // Bring ImageTrail to the front
+            }}>
+              <ImageTrail
+                items={[
+                  'Full Stack Developer',
+                  'Frontend Developer', 
+                  'Backend Developer',
+                  'Mobile App Developer',
+                  'UI/UX Designer',
+                  'Data Scientist',
+                  'DevOps Engineer',
+                  'Machine Learning Engineer',
+                  'Product Manager',
+                  'Graphic Designer',
+                  'Software Architect',
+                  'QA Engineer',
+                  'Blockchain Developer',
+                  'Cybersecurity Specialist',
+                  'Cloud Engineer',
+                  'Game Developer',
+                  'Technical Writer',
+                  'Digital Marketer',
+                  'SEO Specialist',
+                  'Content Creator'
+                ]}
+                variant={1}
+              />
+            </div>
+            
+            {/* Hover Instruction Box */}
             <motion.div
-              key={index}
-              className="floating-category"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ 
-                opacity: item.opacity, 
-                scale: 1,
-              }}
-              whileHover={{ 
-                scale: 1.1, 
-                opacity: Math.min(item.opacity + 0.3, 1),
-                zIndex: 20
-              }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 400, 
-                damping: 25,
-                duration: 0.2
-              }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
               style={{
-                position: 'absolute',
-                left: `${item.x}%`,
-                top: `${item.y}%`,
-                transform: 'translate(-50%, -50%)',
-                padding: '0.4rem 0.8rem',
-                backgroundColor: item.category === 'tech' ? '#f7fafc' : 
-                                item.category === 'design' ? '#f0fdf4' : 
-                                item.category === 'business' ? '#ecfdf5' :
-                                item.category === 'content' ? '#fee2e2' :
-                                item.category === 'marketing' ? '#fff7ed' : '#f7fafc',
-                color: getCategoryColor(item.category),
-                borderRadius: '1rem',
-                fontSize: 'clamp(0.75rem, 1.2vw, 0.9rem)',
-                fontWeight: item.opacity > 0.7 ? '600' : '400',
-                fontFamily: 'Inter, sans-serif',
-                border: `1px solid ${getCategoryColor(item.category)}20`,
+                position: 'relative',
+                zIndex: 10, // Keep instruction box behind the trail
+                backgroundColor: 'rgba(255, 255, 255, 0.1)', // Subtle background
+                backdropFilter: 'blur(2px)',
+                border: '2px dashed #00704a',
+                borderRadius: '1.5rem',
+                padding: '3rem 2rem',
+                textAlign: 'center',
+                boxShadow: '0 8px 32px rgba(0, 112, 74, 0.1)',
                 cursor: 'pointer',
-                userSelect: 'none',
-                zIndex: 5,
-                whiteSpace: 'nowrap',
-                boxShadow: item.opacity > 0.7 ? `0 2px 8px ${getCategoryColor(item.category)}15` : 'none',
+                transition: 'all 0.3s ease',
+                minHeight: '200px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
-              ref={(el) => {
-                if (el && el.parentElement) {
-                  // Store original position for cursor radius calculations
-                  const rect = el.parentElement.getBoundingClientRect();
-                  if (rect) {
-                    const originalX = rect.width * item.x / 100;
-                    const originalY = rect.height * item.y / 100;
-                    el.dataset.originalX = String(originalX);
-                    el.dataset.originalY = String(originalY);
-                    
-                    // Ensure this job is tracked for movement
-                    el.classList.add('floating-category');
-                  }
-                }
+              whileHover={{
+                scale: 1.02,
+                borderColor: '#00704a',
+                backgroundColor: 'rgba(255, 255, 255, 0.35)',
+                boxShadow: '0 12px 40px rgba(0, 112, 74, 0.15)',
               }}
             >
-              {item.text}
+              <motion.div
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                style={{
+                  fontSize: '3rem',
+                  marginBottom: '1rem',
+                }}
+              >
+                ✨
+              </motion.div>
+              
+              <h3 style={{
+                fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
+                fontWeight: '600',
+                color: '#00704a',
+                marginBottom: '0.5rem',
+                fontFamily: 'Poppins',
+              }}>
+                Hover & See the Magic!
+              </h3>
+              
+              <p style={{
+                fontSize: 'clamp(0.9rem, 1.8vw, 1rem)',
+                color: '#666',
+                fontFamily: 'Poppins',
+                lineHeight: 1.5,
+                margin: 0,
+              }}>
+                Move your mouse around this area to discover job categories
+              </p>
+              
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                style={{
+                  marginTop: '1rem',
+                  padding: '0.5rem 1rem',
+                  backgroundColor: '#00704a',
+                  color: 'white',
+                  borderRadius: '2rem',
+                  fontSize: '0.8rem',
+                  fontWeight: '500',
+                  fontFamily: 'Poppins',
+                }}
+              >
+                Try it now!
+              </motion.div>
             </motion.div>
-          );
-        })}
+          </div>
+        </div>
       </section>
 
      
@@ -670,9 +638,9 @@ const Home = () => {
               transition={{ delay: index * 0.2 }}
             >
               <h3 style={{
-                fontSize: 'clamp(3rem, 8vw, 5rem)',
-                fontWeight: '700',
-                color: 'white',
+                fontSize: 'clamp(1.5rem, 4vw, 3.5rem)',
+                fontWeight: '600',
+                color: '#272727',
                 marginBottom: '0.5rem',
                 fontFamily: 'Poppins',
               }}>
