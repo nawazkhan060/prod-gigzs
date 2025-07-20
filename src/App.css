@@ -1,3 +1,12 @@
+/* Global smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
 .newsletter-input:focus {
   outline: none;
   border-color: #00704a;
@@ -16,6 +25,20 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* -------- Hover Expansion Animation -------- */
+/* Apply smooth transform transition to interactive elements */
+a, button, .floating-category, .card, .stat-card, .feature-card, .testimonial-card {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+a:hover, button:hover, .floating-category:hover, .card:hover, .stat-card:hover, .feature-card:hover, .testimonial-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
 
 .footer-link:hover {
   color: #00704a !important; /* Important to override inline styles if any conflict */
