@@ -19,51 +19,39 @@ const TestimonialCarousel = () => {
   
   const testimonials = [
     {
-      text: "Half of the offers I give are sourced from GIGZS. It's the best product for anyone looking for startup talent.",
-      author: "Priya Sharma",
-      role: "Full Stack Developer",
-      rating: 5
-    },
-    {
-      text: "I got my tech job on GIGZS 4 years ago and I'm still happy! Pays well, great culture, and unlimited PTO.",
-      author: "Arjun Patel",
-      role: "Senior Engineer",
-      rating: 5
-    },
-    {
-      text: "I love GIGZS. I got my current job at a startup entirely through the site last year - it's super easy to use and I love the UI.",
-      author: "Sneha Gupta",
-      role: "UI/UX Designer",
-      rating: 5
-    },
-    {
-      text: "The AI matching on GIGZS is incredibly accurate. I've found my dream team faster than ever before.",
-      author: "Rohit Kumar",
-      role: "CTO, TechStart",
-      rating: 5
-    },
-    {
-      text: "GIGZS transformed my freelance career. The quality of projects and clients is exceptional.",
-      author: "Kavya Reddy",
-      role: "Data Scientist",
-      rating: 5
-    },
-    {
-      text: "Finding quality developers was never this easy. GIGZS made our hiring process seamless.",
-      author: "Vikram Singh",
-      role: "Product Manager",
-      rating: 5
-    },
-    {
-      text: "The platform connects me with amazing opportunities. Best decision for my career growth.",
-      author: "Ananya Joshi",
+      text: "Gigzs helped me land my first freelance project within a week of signing up. Perfect for early-stage talent!",
+      author: "Shivansh Verma",
       role: "Frontend Developer",
       rating: 5
     },
     {
-      text: "GIGZS helped me scale my team efficiently. The talent pool is incredible.",
-      author: "Rajesh Agarwal",
-      role: "Founder, InnovateLab",
+      text: "As a bootstrap founder, finding designers was tough until I tried Gigzs. We closed our first hire in days.",
+      author: "Yatharth Chauhan",
+      role: "Co-founder, EdTech Beta",
+      rating: 5
+    },
+    {
+      text: "Within two months we've already worked with three clients through Gigzs. The community is small but super supportive.",
+      author: "Aarya Trifale",
+      role: "Product Designer",
+      rating: 5
+    },
+    {
+      text: "I posted one gig and got quality applications the same day. Can't wait to see the platform grow.",
+      author: "Kartik Agarwal",
+      role: "Startup Recruiter",
+      rating: 5
+    },
+    {
+      text: "Only been using Gigzs for a few weeks but it's already saved me hours in sourcing talent.",
+      author: "Meera Khanna",
+      role: "Operations Lead",
+      rating: 5
+    },
+    {
+      text: "Still early days but the user experience is top-notch. Excited to follow the journey!",
+      author: "Akshata Desai",
+      role: "Full-Stack Engineer",
       rating: 5
     }
   ];
@@ -625,9 +613,9 @@ const Home = () => {
           textAlign: 'center',
         }}>
           {[
-            { number: 8, suffix: 'M+', label: 'Matches Made' },
-            { number: 15, suffix: 'M+', label: 'Tech Jobs' },
-            { number: 10, suffix: 'M+', label: 'Startup Ready Candidates' },
+            { number: 120, suffix: '+', label: 'Matches Made' },
+            { number: 45, suffix: '+', label: 'Gigs Posted' },
+            { number: 350, suffix: '+', label: 'Registered Users' },
           ].map((stat, index) => (
             <motion.div
               key={index}
