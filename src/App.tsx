@@ -13,6 +13,7 @@ import PrivacyPolicy from './policies/PrivacyPolicy';
 import CancellationPolicy from './policies/CancellationPolicy';
 import ShippingPolicy from './policies/ShippingPolicy';
 import './App.css';
+import './Responsive.css';
 
 // Testimonial Carousel Component
 const TestimonialCarousel = () => {
@@ -332,16 +333,15 @@ const Home = () => {
         justifyContent: 'center',
       }}>
         {/* Container for split layout */}
-        <div style={{
-          maxWidth: '1200px',
-          width: '100%',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '4rem',
-          alignItems: 'center',
-          position: 'relative',
-          zIndex: 10,
-        }}>
+        <div className="find-grid" style={{
+           maxWidth: '1200px',
+           width: '100%',
+           display: 'grid',
+           gap: '4rem',
+           alignItems: 'center',
+           position: 'relative',
+           zIndex: 10,
+         }}>
           {/* Left Side - Current Content */}
           <div className="main-heading" style={{
             textAlign: 'left',
@@ -605,14 +605,14 @@ const Home = () => {
         position: 'relative',
         overflow: 'hidden',
       }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '3rem',
-          textAlign: 'center',
-        }}>
+        <div className="features-grid" style={{
+           maxWidth: '1200px',
+           margin: '0 auto',
+           display: 'grid',
+           gap: '3rem',
+           textAlign: 'center',
+           gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+         }}>
           {[
             {
               icon: <Sparkles size={40} />,
@@ -666,8 +666,8 @@ const Home = () => {
       </section>
 
       {/* Enhanced Freelancers and Clients Connect Section */}
-      <section style={{
-        padding: '8rem 2rem',
+      <section className="section-padding" style={{
+         padding: '8rem 2rem',
         backgroundColor: '#f7f7f7',
         position: 'relative',
         overflow: 'hidden',
@@ -710,12 +710,11 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(600px, 1fr))',
-            gap: '6rem',
-            alignItems: 'start',
-          }}>
+          <div className="connect-grid" style={{
+             display: 'grid',
+             gap: '6rem',
+             alignItems: 'start',
+           }}>
             {/* Why Freelancers Love Us */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -996,14 +995,13 @@ const Home = () => {
         overflow: 'hidden',
         minHeight: '70vh',
         }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
-          gap: '4rem',
-          alignItems: 'center',
-        }}>
+        <div className="ai-grid" style={{
+           maxWidth: '1200px',
+           margin: '0 auto',
+           display: 'grid',
+           gap: '4rem',
+           alignItems: 'center',
+         }}>
           <div>
             <motion.div
               initial={{ opacity: 0, x: -30 }}
