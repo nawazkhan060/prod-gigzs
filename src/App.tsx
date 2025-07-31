@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { ShieldCheck, MessageCircle, Sparkles, Users } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Counter from './components/Counter';
@@ -596,7 +597,7 @@ const Home = () => {
 
      
 
-      {/* Stats Section with Green Background and Animated Counters */}
+      {/* Features Section */}
       <section id="features" style={{
         backgroundColor: '#00704a',
         color: 'white',
@@ -613,34 +614,51 @@ const Home = () => {
           textAlign: 'center',
         }}>
           {[
-            { number: 120, suffix: '+', label: 'Matches Made' },
-            { number: 45, suffix: '+', label: 'Gigs Posted' },
-            { number: 350, suffix: '+', label: 'Registered Users' },
-          ].map((stat, index) => (
+            {
+              icon: <Sparkles size={40} />,
+              title: 'Smart Matching',
+              desc: 'AI-powered algorithm connects the right freelancers with the right gigs instantly.'
+            },
+            {
+              icon: <ShieldCheck size={40} />,
+              title: 'Secure Payments',
+              desc: 'Safe escrow and milestone releases keep both clients and talent protected.'
+            },
+            {
+              icon: <MessageCircle size={40} />,
+              title: 'Real-time Chat',
+              desc: 'Built-in messaging and file-sharing so collaboration stays in one place.'
+            },
+            {
+              icon: <Users size={40} />,
+              title: 'Verified Talent',
+              desc: 'Every professional is manually screened for skills, experience, and reliability.'
+            }
+          ].map((feature, index) => (
             <motion.div
               key={index}
-              className="stat-card"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-            >
-              <h3 style={{
-                fontSize: 'clamp(1.5rem, 4vw, 3.5rem)',
-                fontWeight: '600',
+              transition={{ delay: index * 0.15 }}
+              style={{
+                backgroundColor: 'white',
                 color: '#272727',
-                marginBottom: '0.5rem',
-                fontFamily: 'Poppins',
-              }}>
-                <Counter target={stat.number} suffix={stat.suffix} />
+                borderRadius: '1rem',
+                padding: '2rem',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.08)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '1rem'
+              }}
+            >
+              <div style={{ color: '#00704a' }}>{feature.icon}</div>
+              <h3 style={{ fontFamily: 'Poppins', fontSize: '1.25rem', fontWeight: 600, margin: 0 }}>
+                {feature.title}
               </h3>
-              <p style={{
-                fontSize: '1.2rem',
-                color: 'rgba(255, 255, 255, 0.8)',
-                fontFamily: 'Poppins',
-                fontWeight: '500',
-              }}>
-                {stat.label}
+              <p style={{ fontFamily: 'Poppins', fontSize: '0.95rem', lineHeight: 1.4, margin: 0, textAlign: 'center' }}>
+                {feature.desc}
               </p>
             </motion.div>
           ))}
