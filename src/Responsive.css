@@ -1,0 +1,53 @@
+/* Global responsive tweaks */
+
+/* Generic helper so we can collapse excessive horizontal padding on small screens */
+.section-padding {
+  padding: 4rem 1rem !important;
+}
+
+/* Connect. Create. Succeed. grid wrapper */
+.connect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 6rem;
+  align-items: start;
+}
+
+
+/* Find What's Next split grid */
+.find-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+/* AI section grid */
+.ai-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .connect-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .section-padding {
+    padding: 3rem 1rem !important;
+  }
+
+  /* Collapse split grids on small screens */
+  .find-grid,
+  .ai-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Center major headings on mobile for better visual balance */
+  .main-heading {
+    text-align: center !important;
+  }
+}
