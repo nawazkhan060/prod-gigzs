@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { ShieldCheck, MessageCircle, Sparkles, Users } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Counter from './components/Counter';
@@ -19,51 +20,39 @@ const TestimonialCarousel = () => {
   
   const testimonials = [
     {
-      text: "Half of the offers I give are sourced from GIGZS. It's the best product for anyone looking for startup talent.",
-      author: "Priya Sharma",
-      role: "Full Stack Developer",
-      rating: 5
-    },
-    {
-      text: "I got my tech job on GIGZS 4 years ago and I'm still happy! Pays well, great culture, and unlimited PTO.",
-      author: "Arjun Patel",
-      role: "Senior Engineer",
-      rating: 5
-    },
-    {
-      text: "I love GIGZS. I got my current job at a startup entirely through the site last year - it's super easy to use and I love the UI.",
-      author: "Sneha Gupta",
-      role: "UI/UX Designer",
-      rating: 5
-    },
-    {
-      text: "The AI matching on GIGZS is incredibly accurate. I've found my dream team faster than ever before.",
-      author: "Rohit Kumar",
-      role: "CTO, TechStart",
-      rating: 5
-    },
-    {
-      text: "GIGZS transformed my freelance career. The quality of projects and clients is exceptional.",
-      author: "Kavya Reddy",
-      role: "Data Scientist",
-      rating: 5
-    },
-    {
-      text: "Finding quality developers was never this easy. GIGZS made our hiring process seamless.",
-      author: "Vikram Singh",
-      role: "Product Manager",
-      rating: 5
-    },
-    {
-      text: "The platform connects me with amazing opportunities. Best decision for my career growth.",
-      author: "Ananya Joshi",
+      text: "Gigzs helped me land my first freelance project within a week of signing up. Perfect for early-stage talent!",
+      author: "Shivansh Verma",
       role: "Frontend Developer",
       rating: 5
     },
     {
-      text: "GIGZS helped me scale my team efficiently. The talent pool is incredible.",
-      author: "Rajesh Agarwal",
-      role: "Founder, InnovateLab",
+      text: "As a bootstrap founder, finding designers was tough until I tried Gigzs. We closed our first hire in days.",
+      author: "Yatharth Chauhan",
+      role: "Co-founder, EdTech Beta",
+      rating: 5
+    },
+    {
+      text: "Within two months we've already worked with three clients through Gigzs. The community is small but super supportive.",
+      author: "Aarya Trifale",
+      role: "Product Designer",
+      rating: 5
+    },
+    {
+      text: "I posted one gig and got quality applications the same day. Can't wait to see the platform grow.",
+      author: "Kartik Agarwal",
+      role: "Startup Recruiter",
+      rating: 5
+    },
+    {
+      text: "Only been using Gigzs for a few weeks but it's already saved me hours in sourcing talent.",
+      author: "Meera Khanna",
+      role: "Operations Lead",
+      rating: 5
+    },
+    {
+      text: "Still early days but the user experience is top-notch. Excited to follow the journey!",
+      author: "Akshata Desai",
+      role: "Full-Stack Engineer",
       rating: 5
     }
   ];
@@ -608,7 +597,7 @@ const Home = () => {
 
      
 
-      {/* Stats Section with Green Background and Animated Counters */}
+      {/* Features Section */}
       <section id="features" style={{
         backgroundColor: '#00704a',
         color: 'white',
@@ -625,34 +614,51 @@ const Home = () => {
           textAlign: 'center',
         }}>
           {[
-            { number: 8, suffix: 'M+', label: 'Matches Made' },
-            { number: 15, suffix: 'M+', label: 'Tech Jobs' },
-            { number: 10, suffix: 'M+', label: 'Startup Ready Candidates' },
-          ].map((stat, index) => (
+            {
+              icon: <Sparkles size={40} />,
+              title: 'Smart Matching',
+              desc: 'AI-powered algorithm connects the right freelancers with the right gigs instantly.'
+            },
+            {
+              icon: <ShieldCheck size={40} />,
+              title: 'Secure Payments',
+              desc: 'Safe escrow and milestone releases keep both clients and talent protected.'
+            },
+            {
+              icon: <MessageCircle size={40} />,
+              title: 'Real-time Chat',
+              desc: 'Built-in messaging and file-sharing so collaboration stays in one place.'
+            },
+            {
+              icon: <Users size={40} />,
+              title: 'Verified Talent',
+              desc: 'Every professional is manually screened for skills, experience, and reliability.'
+            }
+          ].map((feature, index) => (
             <motion.div
               key={index}
-              className="stat-card"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-            >
-              <h3 style={{
-                fontSize: 'clamp(1.5rem, 4vw, 3.5rem)',
-                fontWeight: '600',
+              transition={{ delay: index * 0.15 }}
+              style={{
+                backgroundColor: 'white',
                 color: '#272727',
-                marginBottom: '0.5rem',
-                fontFamily: 'Poppins',
-              }}>
-                <Counter target={stat.number} suffix={stat.suffix} />
+                borderRadius: '1rem',
+                padding: '2rem',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.08)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '1rem'
+              }}
+            >
+              <div style={{ color: '#00704a' }}>{feature.icon}</div>
+              <h3 style={{ fontFamily: 'Poppins', fontSize: '1.25rem', fontWeight: 600, margin: 0 }}>
+                {feature.title}
               </h3>
-              <p style={{
-                fontSize: '1.2rem',
-                color: 'rgba(255, 255, 255, 0.8)',
-                fontFamily: 'Poppins',
-                fontWeight: '500',
-              }}>
-                {stat.label}
+              <p style={{ fontFamily: 'Poppins', fontSize: '0.95rem', lineHeight: 1.4, margin: 0, textAlign: 'center' }}>
+                {feature.desc}
               </p>
             </motion.div>
           ))}
