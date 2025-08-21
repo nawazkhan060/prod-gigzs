@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, MessageCircle, Sparkles, Users } from 'lucide-react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Counter from './components/Counter';
 import Contact from './components/Contact';
 import Modal from './components/Modal';
 import Threads from './components/Threads';
@@ -12,6 +11,7 @@ import TermsAndConditions from './policies/TermsAndConditions';
 import PrivacyPolicy from './policies/PrivacyPolicy';
 import CancellationPolicy from './policies/CancellationPolicy';
 import ShippingPolicy from './policies/ShippingPolicy';
+import DrizzPage from './pages/DrizzPage';
 import './App.css';
 import './Responsive.css';
 
@@ -1080,26 +1080,31 @@ const Home = () => {
             >
               It's that easy.
             </motion.p>
-            <motion.button
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              style={{
-                padding: '0.75rem 1.5rem',
-                backgroundColor: 'white',
-                color: '#2d1b69',
-                border: 'none',
-                borderRadius: '0.5rem',
-                fontFamily: 'Poppins',
-                fontWeight: '600',
-                cursor: 'pointer',
-                fontSize: '1rem',
-              }}
-            >
-              Learn more
-            </motion.button>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              
+              <a href="/drizz" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <motion.button
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.55 }}
+                  whileHover={{ scale: 1.05 }}
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: 'transparent',
+                    color: 'white',
+                    border: '2px solid white',
+                    borderRadius: '0.5rem',
+                    fontFamily: 'Poppins',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    fontSize: '1rem',
+                  }}
+                >
+                  Schedule a Demo
+                </motion.button>
+              </a>
+            </div>
           </div>
           
           {/* AI Interface Mockup */}
@@ -1588,15 +1593,23 @@ function App() {
 
   return (
     <Router>
-      <div style={{ minHeight: '100vh', overflow: 'hidden' }}>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
+      <MainLayout />
     </Router>
   );
 }
+
+const MainLayout: React.FC = () => {
+  const location = useLocation();
+  return (
+    <div style={{ minHeight: '100vh', overflow: 'hidden', background: location.pathname.startsWith('/drizz') ? '#0b0e23' : '#f7f7f7' }}>
+      {!location.pathname.startsWith('/drizz') && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/drizz" element={<DrizzPage />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </div>
+  );
+};
 
 export default App;
