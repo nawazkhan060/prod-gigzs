@@ -7,6 +7,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Global typography */
+body {
+  font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-size: 16.5px;
+  letter-spacing: 0.01em;
+}
+
+/* Keyword highlight */
+.kw {
+  color: #7045ff;
+  font-weight: 600;
+}
+
 .newsletter-input:focus {
   outline: none;
   border-color: #00704a;
