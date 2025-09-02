@@ -1,0 +1,62 @@
+/* Global smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+/* Global typography */
+body {
+  font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-size: 16.5px;
+  letter-spacing: 0.01em;
+}
+
+/* Keyword highlight */
+.kw {
+  color: #7045ff;
+  font-weight: 600;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: #00704a;
+  box-shadow: 0 0 0 2px rgba(0, 112, 74, 0.1);
+}
+
+.newsletter-input.md\:gap-8 {
+  gap: 2rem;
+}
+
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* -------- Hover Expansion Animation -------- */
+/* Apply smooth transform transition to interactive elements */
+a, button, .floating-category, .card, .stat-card, .feature-card, .testimonial-card {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+a:hover, button:hover, .floating-category:hover, .card:hover, .stat-card:hover, .feature-card:hover, .testimonial-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+
+.footer-link:hover {
+  color: #00704a !important; /* Important to override inline styles if any conflict */
+}
+
+.contact-link:hover {
+  color: #00704a !important; /* Important to override inline styles if any conflict */
+}
