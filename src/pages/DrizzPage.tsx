@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './DrizzPage.css';
 import Cubes from '../components/Cubes';
 import Metrics from '../components/Metrics';
@@ -9,52 +10,63 @@ import BlobCursor from '../components/BlobCursor';
 import { HomeSection, ArchiveSection, ProfileSection, SettingsSection } from '../components/SiteSections';
 import Modal from '../components/Modal';
 import WaitlistForm from '../components/WaitlistForm';
-import TermsAndConditions from '../policies/TermsAndConditions';
-import PrivacyPolicy from '../policies/PrivacyPolicy';
-import CancellationPolicy from '../policies/CancellationPolicy';
-import ShippingPolicy from '../policies/ShippingPolicy';
 
 const DrizzPage: React.FC = () => {
+  const navigate = useNavigate();
   const [modalContent, setModalContent] = useState<React.ReactNode | null>(null);
   const [modalTitle, setModalTitle] = useState<string>('');
 
-  const openModal = (title: string, content: React.ReactNode) => {
+  const openModal = useCallback((title: string, content: React.ReactNode) => {
     setModalTitle(title);
     setModalContent(content);
-  };
-  const closeModal = () => {
+  }, []);
+
+  const closeModal = useCallback(() => {
     setModalContent(null);
     setModalTitle('');
-  };
+  }, []);
+
+  const scrollToId = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
+
+  // Keep the same dockItems structure but we'll render them statically
+  const navItems = useMemo(
+    () => [
+      { icon: <Home size={18} />, label: 'Home', onClick: () => scrollToId('home') },
+      { icon: <Archive size={18} />, label: 'Archive', onClick: () => scrollToId('archive') },
+      { icon: <User size={18} />, label: 'Profile', onClick: () => scrollToId('profile') },
+      { icon: <Settings size={18} />, label: 'Settings', onClick: () => scrollToId('settings') },
+    ],
+    [scrollToId]
+  );
 
   return (
     <div className="drizz-wrapper">
       <div className="drizz-vignette" />
       <BlobCursor disabledSelector=".drizz-nav" />
+
       {/* Top Navigation */}
       <nav className="drizz-nav">
         <div className="drizz-logo">gigzs</div>
-        {(() => {
-          const scrollToId = (id: string) => {
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          };
-          const items = [
-            { icon: <Home size={18} />, label: 'Home', onClick: () => scrollToId('home') },
-            { icon: <Archive size={18} />, label: 'Archive', onClick: () => scrollToId('archive') },
-            { icon: <User size={18} />, label: 'Profile', onClick: () => scrollToId('profile') },
-            { icon: <Settings size={18} />, label: 'Settings', onClick: () => scrollToId('settings') },
-          ];
-          return (
-            <Dock
-              items={items}
-              panelHeight={60}
-              baseItemSize={44}
-              magnification={70}
-              className="relative static left-0 -translate-x-0 bg-transparent border-transparent"
-            />
-          );
-        })()}
+
+        {/* Replaced Dock with Static Lightweight Nav */}
+        <div className="drizz-static-nav">
+          {navItems.map((item, index) => (
+            <button
+              key={index}
+              className="drizz-nav-item"
+              onClick={item.onClick}
+              aria-label={item.label}
+              type="button"
+            >
+              {item.icon}
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </div>
+
         <button
           className="demo-btn"
           onClick={() =>
@@ -105,18 +117,24 @@ const DrizzPage: React.FC = () => {
               </h2>
             </div>
             <div className="video-frame">
-              <video
-                className="video-el"
-                src="/osint1.mp4"
-                controls
-                playsInline
-              />
+            <video
+  className="video-el"
+  src="/osint1.mp4"
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="auto"
+  poster="/f1.png"
+/>
             </div>
           </div>
         </div>
       </section>
+
       <Metrics />
       <Features />
+
       {/* Dock target sections */}
       <HomeSection id="home" />
       <ArchiveSection id="archive" />
@@ -251,10 +269,10 @@ const DrizzPage: React.FC = () => {
             {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#7045ff', textDecoration: 'none' }}>GIGZS pvt ltd </a>. All rights reserved.
           </p>
           <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <button onClick={() => openModal('Terms and Conditions', <TermsAndConditions />)} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Terms & Conditions</button>
-            <button onClick={() => openModal('Privacy Policy', <PrivacyPolicy />)} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Privacy Policy</button>
-            <button onClick={() => openModal('Cancellation Policy', <CancellationPolicy />)} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Cancellation Policy</button>
-            <button onClick={() => openModal('Shipping Policy', <ShippingPolicy />)} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Shipping Policy</button>
+            <button onClick={() => navigate('/terms')} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Terms & Conditions</button>
+            <button onClick={() => navigate('/privacy')} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Privacy Policy</button>
+            <button onClick={() => navigate('/cancellation')} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Cancellation Policy</button>
+            <button onClick={() => navigate('/shipping')} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Shipping Policy</button>
           </div>
         </div>
       </footer>
