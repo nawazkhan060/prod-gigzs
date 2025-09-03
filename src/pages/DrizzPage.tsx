@@ -1,60 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './DrizzPage.css';
 import Cubes from '../components/Cubes';
 import Metrics from '../components/Metrics';
 import Features from '../components/Features';
-import Dock from '../components/Dock';
-import { Home, Archive, User, Settings } from 'lucide-react';
 import BlobCursor from '../components/BlobCursor';
+import { Home, Archive, User, Settings } from 'lucide-react';
 import { HomeSection, ArchiveSection, ProfileSection, SettingsSection } from '../components/SiteSections';
 import Modal from '../components/Modal';
 import WaitlistForm from '../components/WaitlistForm';
-import TermsAndConditions from '../policies/TermsAndConditions';
-import PrivacyPolicy from '../policies/PrivacyPolicy';
-import CancellationPolicy from '../policies/CancellationPolicy';
-import ShippingPolicy from '../policies/ShippingPolicy';
 
 const DrizzPage: React.FC = () => {
+  const navigate = useNavigate();
   const [modalContent, setModalContent] = useState<React.ReactNode | null>(null);
   const [modalTitle, setModalTitle] = useState<string>('');
 
-  const openModal = (title: string, content: React.ReactNode) => {
+  const openModal = useCallback((title: string, content: React.ReactNode) => {
     setModalTitle(title);
     setModalContent(content);
-  };
-  const closeModal = () => {
+  }, []);
+
+  const closeModal = useCallback(() => {
     setModalContent(null);
     setModalTitle('');
-  };
+  }, []);
+
+  const scrollToId = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
 
   return (
     <div className="drizz-wrapper">
       <div className="drizz-vignette" />
-      <BlobCursor disabledSelector=".drizz-nav" />
+      <BlobCursor disabledSelector=".drizz-nav, button, .demo-btn, .nav-link" />
+
       {/* Top Navigation */}
       <nav className="drizz-nav">
         <div className="drizz-logo">gigzs</div>
-        {(() => {
-          const scrollToId = (id: string) => {
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          };
-          const items = [
-            { icon: <Home size={18} />, label: 'Home', onClick: () => scrollToId('home') },
-            { icon: <Archive size={18} />, label: 'Archive', onClick: () => scrollToId('archive') },
-            { icon: <User size={18} />, label: 'Profile', onClick: () => scrollToId('profile') },
-            { icon: <Settings size={18} />, label: 'Settings', onClick: () => scrollToId('settings') },
-          ];
-          return (
-            <Dock
-              items={items}
-              panelHeight={60}
-              baseItemSize={44}
-              magnification={70}
-              className="relative static left-0 -translate-x-0 bg-transparent border-transparent"
-            />
-          );
-        })()}
+
+        {/* Simple Static Nav Links */}
+        <div className="nav-menu">
+          <button className="nav-link" onClick={() => scrollToId('home')}>
+            <Home size={16} />
+            <span>Home</span>
+          </button>
+          <button className="nav-link" onClick={() => scrollToId('archive')}>
+            <Archive size={16} />
+            <span>Archive</span>
+          </button>
+          <button className="nav-link" onClick={() => scrollToId('profile')}>
+            <User size={16} />
+            <span>Profile</span>
+          </button>
+          <button className="nav-link" onClick={() => scrollToId('settings')}>
+            <Settings size={16} />
+            <span>Settings</span>
+          </button>
+        </div>
+
         <button
           className="demo-btn"
           onClick={() =>
@@ -71,7 +75,17 @@ const DrizzPage: React.FC = () => {
       {/* Hero Section */}
       <header className="drizz-hero">
         <div className="cubes-bg">
-          <Cubes gridSize={5} cubeSize={120} maxAngle={60} radius={3} borderStyle="1px solid rgba(255,255,255,0.08)" faceColor="rgba(255,255,255,0.04)" shadow={false} autoAnimate={true} rippleOnClick={false} />
+          <Cubes
+            gridSize={3}
+            cubeSize={80}
+            maxAngle={45}
+            radius={3}
+            borderStyle="1px solid rgba(255,255,255,0.06)"
+            faceColor="rgba(255,255,255,0.03)"
+            shadow={false}
+            autoAnimate={false}
+            rippleOnClick={false}
+          />
         </div>
         <h1>
           Fastest <strong className="highlight">GIGZS AI</strong> Powered<br />
@@ -110,27 +124,31 @@ const DrizzPage: React.FC = () => {
                 src="/osint1.mp4"
                 controls
                 playsInline
+                preload="metadata"
+                poster="/f1.png"
               />
             </div>
           </div>
         </div>
       </section>
+
       <Metrics />
       <Features />
-      {/* Dock target sections */}
+
+      {/* Dock Target Sections */}
       <HomeSection id="home" />
       <ArchiveSection id="archive" />
       <ProfileSection id="profile" />
       <SettingsSection id="settings" />
 
-      {/* Footer replicated from landing page */}
+      {/* Footer */}
       <footer
         style={{
           background: '#0d112b',
           color: '#e6e6f0',
           marginTop: '3rem',
           padding: 'clamp(1.5rem, 2.5vw, 2.5rem) 1rem',
-          boxShadow: '0 -1px 0 rgba(255,255,255,0.06) inset'
+          boxShadow: '0 -1px 0 rgba(255,255,255,0.06) inset',
         }}
       >
         <div
@@ -184,13 +202,7 @@ const DrizzPage: React.FC = () => {
             >
               Contact
             </h3>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1rem',
-              }}
-            >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <a
                 href="mailto:info@GIGZS.com"
                 className="contact-link"
@@ -241,29 +253,39 @@ const DrizzPage: React.FC = () => {
             fontFamily: 'Poppins',
           }}
         >
-          <p
-            style={{
-              margin: 0,
-              fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-              opacity: 0.9,
-            }}
-          >
-            {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#7045ff', textDecoration: 'none' }}>GIGZS pvt ltd </a>. All rights reserved.
+          <p style={{ margin: 0, fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)', opacity: 0.9 }}>
+            {new Date().getFullYear()}{' '}
+            <a href="https://GIGZS.com" style={{ color: '#7045ff', textDecoration: 'none' }}>
+              GIGZS pvt ltd
+            </a>
+            . All rights reserved.
           </p>
           <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <button onClick={() => openModal('Terms and Conditions', <TermsAndConditions />)} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Terms & Conditions</button>
-            <button onClick={() => openModal('Privacy Policy', <PrivacyPolicy />)} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Privacy Policy</button>
-            <button onClick={() => openModal('Cancellation Policy', <CancellationPolicy />)} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Cancellation Policy</button>
-            <button onClick={() => openModal('Shipping Policy', <ShippingPolicy />)} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Shipping Policy</button>
+            <button onClick={() => navigate('/terms')} style={footerBtnStyle}>Terms & Conditions</button>
+            <button onClick={() => navigate('/privacy')} style={footerBtnStyle}>Privacy Policy</button>
+            <button onClick={() => navigate('/cancellation')} style={footerBtnStyle}>Cancellation Policy</button>
+            <button onClick={() => navigate('/shipping')} style={footerBtnStyle}>Shipping Policy</button>
           </div>
         </div>
       </footer>
 
+      {/* Modal */}
       <Modal isOpen={!!modalContent} onClose={closeModal} title={modalTitle}>
         {modalContent}
       </Modal>
     </div>
   );
+};
+
+// Reusable inline style for footer buttons
+const footerBtnStyle = {
+  background: 'none',
+  border: 'none',
+  color: '#7045ff',
+  textDecoration: 'underline',
+  cursor: 'pointer',
+  fontFamily: 'Poppins',
+  fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
 };
 
 export default DrizzPage;
