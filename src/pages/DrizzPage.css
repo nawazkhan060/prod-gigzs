@@ -6,6 +6,46 @@
   --text-light: #ffffff;
   --text-muted: #a1a1b5;
 }
+/* Static Lightweight Nav to Replace Dock */
+.drizz-static-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  height: 60px;
+  padding: 0 1rem;
+  background: rgba(13, 17, 43, 0.6);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drizz-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  color: #e6e6f0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+  opacity: 0.8;
+}
+
+.drizz-nav-item:hover {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.drizz-nav-item:hover span {
+  text-shadow: 0 0 8px rgba(112, 69, 255, 0.3);
+}
+
+.drizz-nav-item svg {
+  display: block;
+}
 
 .drizz-wrapper {
   min-height: 100vh;
