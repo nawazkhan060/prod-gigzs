@@ -266,7 +266,7 @@ const DrizzPage: React.FC = () => {
               opacity: 0.9,
             }}
           >
-            {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#7045ff', textDecoration: 'none' }}>GIGZS pvt ltd </a>. All rights reserved.
+            {new Date().getFullYear()} <a href="https://GIGZS.com" style={{ color: '#7045ff', textDecoration: 'none' }}>GIGZS pvt LTD </a>. All rights reserved.
           </p>
           <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
             <button onClick={() => navigate('/terms')} style={{ background: 'none', border: 'none', color: '#7045ff', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Terms & Conditions</button>
