@@ -1,50 +1,74 @@
-const TermsAndConditions = () => (
-  <>
-    <p><strong>Effective Date:</strong> 2 June 2025</p>
-    <p><strong>Last Updated:</strong> 2 June 2025</p>
-    <p>Welcome to Gigzs, a product by Tronocity Labs Pvt Ltd. These Terms and Conditions govern your use of our website and services. By using Gigzs, you agree to these terms.</p>
-    
-    <h3>1. Definitions</h3>
-    <ul>
-      <li><strong>Client:</strong> Individual or entity seeking to hire freelancers.</li>
-      <li><strong>Freelancer:</strong> Individual providing services through Gigzs.</li>
-      <li><strong>Platform:</strong> The Gigzs website and associated tools/services.</li>
-    </ul>
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-    <h3>2. User Accounts</h3>
-    <ul>
-      <li>Users must be 18+ and provide accurate information.</li>
-      <li>Verification may include KYC, document upload, and project validation.</li>
-      <li>Gigzs reserves the right to suspend or terminate accounts for violations.</li>
-    </ul>
+function TermsAndConditions() {
+  const navigate = useNavigate();
 
-    <h3>3. Payment Terms</h3>
-    <ul>
-      <li>All payments are processed through Gigzs system.</li>
-      <li>Clients pay Gigzs first; funds are released to freelancers post completion & approval.</li>
-      <li>Gigzs charges a platform fee for each transaction.</li>
-    </ul>
+  return (
+    <div className="min-h-screen bg-gray-50 pt-16"> {/* ← Add padding to avoid navbar overlap */}
+      <div className="max-w-4xl mx-auto px-4 py-10">
+        {/* Back Button */}
+        <button 
+          onClick={() => navigate('/')}
+          className="mb-6 px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors duration-200 flex items-center"
+        >
+          ← Back to Home
+        </button>
 
-    <h3>4. Dispute Resolution</h3>
-    <ul>
-      <li>Any payment or work-related dispute must be raised via our internal PayTrackBot or support team within 7 days.</li>
-      <li>Gigzs will mediate based on submitted proof, messages, and contracts.</li>
-    </ul>
+        {/* Page Header */}
+        <h1 className="text-3xl font-bold text-gray-900">Terms & Conditions</h1>
+        <p className="mt-2 text-sm text-gray-500">
+          Last updated: {new Date().toLocaleDateString()}
+        </p>
 
-    <h3>5. Platform Rights</h3>
-    <ul>
-      <li>Gigzs may remove content or suspend accounts that violate our policies.</li>
-      <li>We do not guarantee availability or success of any project on the platform.</li>
-    </ul>
+        {/* Content */}
+        <div className="mt-8 space-y-6 bg-white border border-gray-200 rounded-xl p-6">
+          <p className="text-gray-700 leading-relaxed">
+            For the purpose of these Terms and Conditions, the term "we", "us", "our" used anywhere on this page shall mean 
+            <strong> TRONOCITY LABS PRIVATE LIMITED</strong>, whose registered/operational office is PACHKHEDI(G) HOUSE NO 581 TAH KUHI DISTRICT, 
+            Nagpur, MAHARASHTRA 441210. "You", “your”, "user", “visitor” shall mean any natural or legal person who is visiting 
+            our website and/or agreed to purchase from us.
+          </p>
 
-    <h3>6. Limitation of Liability</h3>
-    <ul>
-      <li>Gigzs is not responsible for loss of data, delays, or service interruptions.</li>
-    </ul>
+          <p className="text-gray-700 leading-relaxed">
+            Your use of the website and/or purchase from us are governed by the following Terms and Conditions: The content of the 
+            pages of this website is subject to change without notice. Neither we nor any third parties provide any warranty or 
+            guarantee as to the accuracy, timeliness, performance, completeness, or suitability of the information and materials 
+            found or offered on this website for any particular purpose. You acknowledge that such information and materials may 
+            contain inaccuracies or errors, and we expressly exclude liability for any such inaccuracies or errors to the fullest 
+            extent permitted by law.
+          </p>
 
-    <h3>7. Changes to Terms</h3>
-    <p>Gigzs may update these terms at any time. Users will be notified of significant changes.</p>
-  </>
-);
+          <p className="text-gray-700 leading-relaxed">
+            Your use of any information or materials on our website and/or product pages is entirely at your own risk, for which 
+            we shall not be liable. It shall be your own responsibility to ensure that any products, services, or information 
+            available through our website and/or product pages meet your specific requirements.
+          </p>
+
+          <p className="text-gray-700 leading-relaxed">
+            Our website contains material which is owned by or licensed to us. This material includes, but is not limited to, 
+            the design, layout, look, appearance, and graphics. Reproduction is prohibited other than in accordance with the 
+            copyright notice, which forms part of these terms and conditions. All trademarks reproduced in our website which are 
+            not the property of, or licensed to, the operator are acknowledged on the website.
+          </p>
+
+          <p className="text-gray-700 leading-relaxed">
+            Unauthorized use of information provided by us shall give rise to a claim for damages and/or be a criminal offense. 
+            From time to time, our website may also include links to other websites. These links are provided for your 
+            convenience to provide further information. You may not create a link to our website from another website or document 
+            without TRONOCITY LABS PRIVATE LIMITED’s prior written consent.
+          </p>
+
+          <p className="text-gray-700 leading-relaxed">
+            Any dispute arising out of use of our website and/or purchase with us and/or any engagement with us is subject to the 
+            laws of India. We shall be under no liability whatsoever in respect of any loss or damage arising directly or 
+            indirectly out of the decline of authorization for any transaction, on account of the cardholder having exceeded the 
+            preset limit mutually agreed by us with our acquiring bank from time to time.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default TermsAndConditions;
