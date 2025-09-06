@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, MessageCircle, Sparkles, Users } from 'lucide-react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Contact from './components/Contact';
 import Modal from './components/Modal';
@@ -9,7 +9,7 @@ import Threads from './components/Threads';
 import ImageTrail from './components/ImageTrail';
 import TermsAndConditions from './policies/TermsAndConditions';
 import PrivacyPolicy from './policies/PrivacyPolicy';
-import CancellationPolicy from './policies/CancellationPolicy';
+import CancellationRefund from './policies/CancellationPolicy';
 import ShippingPolicy from './policies/ShippingPolicy';
 import DrizzPage from './pages/DrizzPage';
 import './App.css';
@@ -215,6 +215,7 @@ const TestimonialCarousel = () => {
 };
 
 const Home = () => {
+  const navigate = useNavigate();
   const [modalContent, setModalContent] = useState<React.ReactNode | null>(null);
   const [modalTitle, setModalTitle] = useState('');
 
@@ -1521,10 +1522,10 @@ const Home = () => {
           }}>
           </p>
           <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <button onClick={() => openModal('Terms and Conditions', <TermsAndConditions />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Terms & Conditions</button>
-            <button onClick={() => openModal('Privacy Policy', <PrivacyPolicy />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Privacy Policy</button>
-            <button onClick={() => openModal('Cancellation Policy', <CancellationPolicy />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Cancellation Policy</button>
-            <button onClick={() => openModal('Shipping Policy', <ShippingPolicy />)} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Shipping Policy</button>
+            <button onClick={() => navigate('/terms')} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Terms & Conditions</button>
+            <button onClick={() => navigate('/privacy')} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Privacy Policy</button>
+            <button onClick={() => navigate('/cancellation')} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Cancellation Policy</button>
+            <button onClick={() => navigate('/shipping')} style={{ background: 'none', border: 'none', color: '#00704a', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Poppins', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)' }}>Shipping Policy</button>
           </div>
         </div>
       </footer>
@@ -1607,6 +1608,10 @@ const MainLayout: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/drizz" element={<DrizzPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/cancellation" element={<CancellationRefund />} />
+        <Route path="/shipping" element={<ShippingPolicy />} />
       </Routes>
     </div>
   );
